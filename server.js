@@ -42,6 +42,7 @@ pool.getConnection(function(err, connection) {
             (err) ? res.send(err) : res.json(data);
         });
     });
+    connnection.release();
   });
 
 app.use(express.static(`${__dirname}/uploads`));
