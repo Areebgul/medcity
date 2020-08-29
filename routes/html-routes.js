@@ -13,6 +13,11 @@ module.exports = function (app, connection, upload) {
         res.send("Welcome to medcity");
     });
 
+
+    app.get('/areeb', function (req, res) {
+        res.send("Welcome to areeb");
+    });
+
 /////////////////////,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.////////////////////
 /////////////////////Customer Apis Start From here ////////////////////
 /////////////////////'''''''''''''''''''''''''''''/////////////////////
@@ -69,12 +74,18 @@ app.post('/getCustommerData', function (req, res) {
 
 ////////////////////////////////Question getting //////////////////////////////
 
-app.post('/tbl_newquestions', function (req, res) {
+app.get('/tbl_newquestions', function (req, res) {
     connection.query('Select * from tbl_newquestions WHERE question_id=(SELECT max(question_id) FROM tbl_newquestions)', function (err, data) {
         (err) ? res.send(err) : res.json(data);
     });
 });
 
+
+app.get('/tbl_newquestions123', function (req, res) {
+    connection.query('Select * from tbl_newquestions WHERE question_id=(SELECT max(question_id) FROM tbl_newquestions)', function (err, data) {
+        (err) ? res.send(err) : res.json(data);
+    });
+});
 // insert Answer..............
 
 app.post('/insertIntoAnswer', function (req, res) {
