@@ -74,18 +74,13 @@ app.post('/getCustommerData', function (req, res) {
 
 ////////////////////////////////Question getting //////////////////////////////
 
-app.get('/tbl_newquestions', function (req, res) {
-    connection.query('Select * from tbl_newquestions WHERE question_id=(SELECT max(question_id) FROM tbl_newquestions)', function (err, data) {
-        (err) ? res.send(err) : res.json(data);
-    });
-});
 
 
-app.get('/tbl_newquestions123', function (req, res) {
-    connection.query('Select * from tbl_newquestions WHERE question_id=(SELECT max(question_id) FROM tbl_newquestions)', function (err, data) {
-        (err) ? res.send(err) : res.json(data);
-    });
-});
+// app.get('/tbl_newquestions123', function (req, res) {
+//     connection.query('Select * from tbl_newquestions WHERE question_id=(SELECT max(question_id) FROM tbl_newquestions)', function (err, data) {
+//         (err) ? res.send(err) : res.json(data);
+//     });
+// });
 // insert Answer..............
 
 app.post('/insertIntoAnswer', function (req, res) {

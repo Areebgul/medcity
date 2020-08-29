@@ -24,9 +24,25 @@ const connection = mysql.createConnection({
     multipleStatements: true
 });
 
+var pool = mysql.createPool({
+    connectionLimit: 5,
+    host: '51.255.16.156',
+    user: 'aditecha_medcity',
+    password: 'aditecha_medcity', 
+    database: 'aditecha_medcity'
+});
+
 connection.connect(function(err){
     (err) ? console.log(err): console.log(connection);
 });
+
+pool.getConnection(function(err, connection) {
+    app.get('/tbl_newquestions123', function (req, res) {
+        connection.query('Select * from tbl_newquestions WHERE question_id=(SELECT max(question_id) FROM tbl_newquestions)', function (err, data) {
+            (err) ? res.send(err) : res.json(data);
+        });
+    });
+  });
 
 app.use(express.static(`${__dirname}/uploads`));
 
